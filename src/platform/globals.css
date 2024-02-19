@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .shadow-base {
+    box-shadow: 0 0 60px 0px rgba(0, 0, 0, 0.15);
+  }
+  .scroll-touch {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+:root {
+  --color: #000000;
+  --bg-color: #ffffff;
+  --scrollbar: #c0c0c0;
+}
+
+[class='dark'] {
+  --color: #ffffff;
+  --bg-color: #000000;
+  --scrollbar: #2b2b2b;
+}
+
+html, body {
+  color: var(--color);
+  background: var(--bg-color);
+  -webkit-tap-highlight-color: transparent;
+}
+
+[class='dark'] html, body {
+  color: var(--color);
+  background: var(--bg-color);
+}
+
+/* Scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar) transparent;
+}
+
+/* Scrollbar for Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar) transparent;
+}
+
+/* Scrollbar for WebKit (Chrome, Safari) */
+*::-webkit-scrollbar {
+  width: 6px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar);
+  border-radius: 5px;
+}
+
+*::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px var(--bg-color) inset !important;
+  -webkit-text-fill-color: var(--color) !important;
+  transition: background-color 5000s ease-in-out 0s;
+}

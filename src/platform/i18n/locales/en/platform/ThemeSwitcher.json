@@ -1,0 +1,6 @@
+{
+  "light": "Light mode",
+  "dark": "Dark mode",
+  "system": "System mode",
+  "currentTheme": "The current theme is:"
+}

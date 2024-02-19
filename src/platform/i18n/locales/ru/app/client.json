@@ -1,0 +1,7 @@
+{
+  "title": "Клиентская часть",
+  "counter_one": "{{count}} предмет",
+  "counter_few": "{{count}} предмета",
+  "counter_many": "{{count}} предметов",
+  "back-to-home": "Вернуться на главную"
+}
