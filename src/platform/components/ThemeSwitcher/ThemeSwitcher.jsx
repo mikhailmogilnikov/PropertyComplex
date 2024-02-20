@@ -3,27 +3,18 @@
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 import { useClientTranslation } from '@/platform/hooks/useClientTranslation';
+import { updateThemeColor } from '@/platform/actions/updateThemeColor';
 
 export function ThemeSwitcher() {
   const { t } = useClientTranslation('platform/ThemeSwitcher');
   const [mounted, setMounted] = useState(false);
-  const { theme, resolvedTheme, setTheme } = useTheme();
+  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  useEffect(() => {
-    if (resolvedTheme === 'dark') {
-      document
-        .querySelector('meta[name="theme-color"]')
-        .setAttribute('content', '#000000');
-    } else {
-      document
-        .querySelector('meta[name="theme-color"]')
-        .setAttribute('content', '#ffffff');
-    }
-  }, [resolvedTheme]);
+  updateThemeColor();
 
   if (!mounted) return null;
 

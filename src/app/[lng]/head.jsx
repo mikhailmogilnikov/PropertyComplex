@@ -1,7 +1,7 @@
-const title = 'Next.js 14 i18next Boilerplate';
+const title = 'Имущественный комплекс МГРИ';
 const url = '';
 const description = '';
-const author = 'Mikhail Mogilnikov';
+const author = 'МГРИ';
 const keywords = '';
 
 export default function Head() {
