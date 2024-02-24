@@ -5,7 +5,6 @@ import { languages } from '../../platform/i18n/settings';
 import './globals.css';
 import Providers from './providers';
 import Head from './head';
-import { ThemeSwitcher } from '@/platform/components/ThemeSwitcher';
 
 const inter = Inter({ subsets: ['latin', 'cyrillic'] });
 
@@ -34,10 +33,7 @@ export default function RootLayout({ children, params: { lng } }) {
       <body
         className={`${inter.className} box-border select-none cursor-default`}
       >
-        <Providers lang={lng}>
-          {children}
-          <ThemeSwitcher />
-        </Providers>
+        <Providers lang={lng}>{children}</Providers>
       </body>
     </html>
   );
