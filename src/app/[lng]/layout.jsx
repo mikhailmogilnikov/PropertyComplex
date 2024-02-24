@@ -31,7 +31,7 @@ export default function RootLayout({ children, params: { lng } }) {
         />
       </head>
       <body
-        className={`${inter.className} box-border select-none cursor-default`}
+        className={`${inter.className} box-border select-none cursor-default overflow-x-hidden`}
       >
         <Providers lang={lng}>{children}</Providers>
       </body>

@@ -1,5 +1,5 @@
-import { MapEntry } from '@/app-map/entries/MapEntry';
-import { MenuEntry } from '@/app-menu/entries/MenuEntry';
+import { MapEntry } from '@/app-map';
+import { MenuEntry } from '@/app-menu';
 
 export default function Main() {
   return (

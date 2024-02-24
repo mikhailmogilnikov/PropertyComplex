@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 
-function useResize() {
+export const useResize = () => {
   const isClient = typeof window === 'object';
 
   const [windowSize, setWindowSize] = useState({
-    winWidth: isClient ? window.innerWidth : 0,
-    winHeight: isClient ? window.innerHeight : 0,
+    width: isClient ? window.innerWidth : 0,
+    height: isClient ? window.innerHeight : 0,
   });
 
   useEffect(() => {
@@ -15,8 +15,8 @@ function useResize() {
 
     const handleResize = () => {
       setWindowSize({
-        winWidth: window.innerWidth,
-        winHeight: window.innerHeight,
+        width: window.innerWidth,
+        height: window.innerHeight,
       });
     };
 
@@ -29,6 +29,23 @@ function useResize() {
   }, [isClient]);
 
   return windowSize;
-}
+};
 
-export default useResize;
+export const useDetectMobile = () => {
+  const { width } = useResize();
+  const [isMobile, setIsMobile] = useState(width < 1024);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  return isMobile;
+};

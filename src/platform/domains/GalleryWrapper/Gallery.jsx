@@ -5,13 +5,13 @@ import { useRef, useState } from 'react';
 import { Skeleton } from '@nextui-org/skeleton';
 import clsx from 'clsx';
 import { useStore } from '@/platform/providers/StoreProvider/store';
-import useResize from '@/platform/hooks/useResize';
+import { useResize } from '@/platform/hooks/useResize';
 
 const Gallery = observer(() => {
   const [isLoaded, setIsLoaded] = useState(false);
   const { galleryStore } = useStore();
   const imageRef = useRef(null);
-  const { winWidth, winHeight } = useResize();
+  const { width: winWidth, height: winHeight } = useResize();
 
   const handlerClose = () => {
     galleryStore.setImageLink('');

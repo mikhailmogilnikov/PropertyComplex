@@ -1,14 +1,10 @@
-import { makeAutoObservable, runInAction } from 'mobx';
-import { menuRoutes } from '@/platform/constants';
+import { makeAutoObservable } from 'mobx';
 
 class MenuStore {
   constructor() {
-    this.activeTab = menuRoutes.list;
+    this.activeTab = null;
     this.activeRoom = 0;
-    this.visibility = true;
     makeAutoObservable(this);
-
-    this.toggleVisibility = this.toggleVisibility.bind(this);
   }
 
   setActiveTab(tab) {
@@ -23,22 +19,12 @@ class MenuStore {
     }
   }
 
-  toggleVisibility(visibility = this.visibility) {
-    runInAction(() => {
-      this.visibility = !visibility;
-    });
-  }
-
   getActiveTab() {
     return this.activeTab;
   }
 
   getActiveRoom() {
     return this.activeRoom;
-  }
-
-  getVisibility() {
-    return this.visibility;
   }
 }
 
