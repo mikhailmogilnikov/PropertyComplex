@@ -1,5 +1,3 @@
-'use client';
-
 import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
 import { observer } from 'mobx-react-lite';
@@ -9,7 +7,7 @@ import clsx from 'clsx';
 import { useStore } from '@/platform/providers/StoreProvider/store';
 import useResize from '@/platform/hooks/useResize';
 
-export const Gallery = observer(() => {
+const Gallery = observer(() => {
   const [isLoaded, setIsLoaded] = useState(false);
   const { galleryStore } = useStore();
   const imageRef = useRef(null);
@@ -62,7 +60,7 @@ export const Gallery = observer(() => {
               y: positionY,
               width: imageSize.width,
               height: imageSize.height,
-              borderRadius: 30,
+              borderRadius: 12,
             }}
             exit={{ width, height, x, y, borderRadius: 0 }}
             onClick={handlerClose}
@@ -89,3 +87,5 @@ export const Gallery = observer(() => {
     </AnimatePresence>
   );
 });
+
+export default Gallery;

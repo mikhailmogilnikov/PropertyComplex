@@ -6,7 +6,6 @@ import './globals.css';
 import Providers from './providers';
 import Head from './head';
 import { ThemeSwitcher } from '@/platform/components/ThemeSwitcher';
-import { Gallery } from '@/platform/domains/Gallery';
 
 const inter = Inter({ subsets: ['latin', 'cyrillic'] });
 
@@ -38,7 +37,6 @@ export default function RootLayout({ children, params: { lng } }) {
         <Providers lang={lng}>
           {children}
           <ThemeSwitcher />
-          <Gallery />
         </Providers>
       </body>
     </html>
