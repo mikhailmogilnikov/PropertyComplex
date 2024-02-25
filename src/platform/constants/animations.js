@@ -1,7 +1,11 @@
 export const animations = {};
 
 export const transitions = {
-  desktopVisibility: { type: 'spring', stiffness: 150, damping: 20 },
+  primary: {
+    type: 'spring',
+    duration: 0.5,
+    bounce: 0.05,
+  },
 };
 
 export const variants = {
