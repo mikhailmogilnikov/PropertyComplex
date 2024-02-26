@@ -1,10 +1,11 @@
-import { m } from 'framer-motion';
+import { AnimatePresence, m } from 'framer-motion';
 import { useState } from 'react';
 import { NavigationMobile } from '../Navigation';
 import { useStore } from '@/platform/providers/StoreProvider/store';
 import { MenuVariantsMobile } from '@/app-menu/constants/variants';
 import { transitions } from '@/platform/constants';
 import { Swiper } from '@/app-menu/components/Swiper';
+import { MenuRouter } from '../MenuRouter';
 
 export const MenuMobile = () => {
   const [expanded, setExpanded] = useState(false);
@@ -35,10 +36,17 @@ export const MenuMobile = () => {
         initial='hidden'
         animate={expanded ? 'expanded' : 'collapsed'}
         transition={transitions.primary}
-        className='fixed shadow-base bg-white/60 dark:bg-default-50/60 backdrop-blur-3xl flex flex-col z-20'
+        className='fixed shadow-base bg-white/60 overflow-hidden dark:bg-default-50/60 backdrop-blur-3xl flex flex-col z-20'
       >
+        <AnimatePresence>
+          {expanded && (
+            <>
+              <Swiper panEvent={closeMenu} />
+              <MenuRouter />
+            </>
+          )}
+        </AnimatePresence>
         <NavigationMobile openMenu={openMenu} closeMenu={closeMenu} />
-        <Swiper expanded={expanded} panEvent={closeMenu} />
       </m.menu>
     </>
   );

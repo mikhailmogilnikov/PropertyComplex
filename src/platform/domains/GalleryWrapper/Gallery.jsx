@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, m } from 'framer-motion';
 import Image from 'next/image';
 import { observer } from 'mobx-react-lite';
 import { useRef, useState } from 'react';
@@ -46,14 +46,14 @@ const Gallery = observer(() => {
     <AnimatePresence>
       {!isEmpty && (
         <aside className='fixed top-0 left-0 bottom-0 right-0 flex'>
-          <motion.button
+          <m.button
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className='absolute top-0 left-0 bottom-0 right-0 bg-white/40 dark:bg-black/40 backdrop-blur-3xl z-10'
             onClick={handlerClose}
           />
-          <motion.div
+          <m.div
             initial={{ width, height, x, y, borderRadius: 0 }}
             animate={{
               x: positionX,
@@ -81,7 +81,7 @@ const Gallery = observer(() => {
               alt='full width image'
             />
             <Skeleton className='w-full h-full' />
-          </motion.div>
+          </m.div>
         </aside>
       )}
     </AnimatePresence>

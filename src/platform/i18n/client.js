@@ -17,8 +17,9 @@ i18next
   .use(initReactI18next)
   .use(LanguageDetector)
   .use(
-    resourcesToBackend((language, namespace) =>
-      import(`./locales/${language}/${namespace}.json`),
+    resourcesToBackend(
+      (language, namespace) =>
+        import(`./locales/${language}/${namespace}.json`),
     ),
   )
   .init({
