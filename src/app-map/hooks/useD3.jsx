@@ -5,9 +5,16 @@ import { useEffect, useState } from "react";
 import * as d3 from "d3";
 
 const initConfig = {
-  scale: 0.55,
-  translateX: 100,
-  translateY: 100,
+  desktop: {
+    scale: 0.75,
+    translateX: 650,
+    translateY: 150,
+  },
+  mobile: {
+    scale: 0.55,
+    translateX: 100,
+    translateY: 100,
+  }
 };
 
 const themeColors = {
@@ -27,7 +34,7 @@ const themeColors = {
   },
 };
 
-const changeColor = (e, f, duration = 100) => 
+const changeColor = (e, f, duration = 100) =>
   e.transition().duration(duration).ease(d3.easeLinear).attr("fill", f);
 
 class MapClass {
@@ -53,10 +60,10 @@ class MapClass {
       .attr("height", window.innerHeight);
   }
 
-  initZoom() {
+  initZoom(config) {
     const manualTransform = d3.zoomIdentity
-      .scale(initConfig.scale)
-      .translate(initConfig.translateX, initConfig.translateY);
+      .scale(config.scale)
+      .translate(config.translateX, config.translateY);
 
     this.g.attr("transform", manualTransform);
 
@@ -102,13 +109,13 @@ class MapClass {
   }
 
   initEvents(roomClickEvent) {
-    const {colors} = this;
+    const { colors } = this;
 
     this.rooms
       .on("click", function () {
         roomClickEvent(this.getAttribute("class"));
       })
-      .on("mouseover", function() {
+      .on("mouseover", function () {
         const path = d3.select(this).select("path[fill]");
         changeColor(path, colors.hover);
       })
@@ -118,10 +125,7 @@ class MapClass {
       })
       .on("mousedown", function () {
         const path = d3.select(this).select("path[fill]");
-        changeColor(
-          changeColor(path, colors.mousedown), 
-          colors.hover
-          );
+        changeColor(changeColor(path, colors.mousedown), colors.hover);
       })
       .on("mouseup", function () {
         const path = d3.select(this).select("path[fill]");
@@ -130,7 +134,7 @@ class MapClass {
   }
 }
 
-const useD3 = ({ svgRef, theme, resolvedTheme, databaseStore }) => {
+const useD3 = ({ svgRef, theme, resolvedTheme, databaseStore, deviceType }) => {
   const [isInitMap, setIsInitMap] = useState(false);
 
   const roomClickEvent = (attrClassName) => {
@@ -142,19 +146,18 @@ const useD3 = ({ svgRef, theme, resolvedTheme, databaseStore }) => {
     if (!svgRef.current) return;
     const currentTheme = resolvedTheme === "dark" ? "dark" : "light";
     const roomNames = databaseStore.getRooms().map((i) => i.name);
-    const map = new MapClass({ svgRef, currentTheme, roomNames });
+    const map = new MapClass({ svgRef, currentTheme, roomNames, deviceType });
 
     if (!isInitMap) {
       map.initSize();
-      map.initZoom();
+      map.initZoom(initConfig[deviceType]);
       setIsInitMap(true);
     }
     map.initFont();
     map.initDefaultColor();
     map.initRoomStyles();
     map.initEvents(roomClickEvent);
-
-  }, [svgRef.current, theme, resolvedTheme]);
+  }, [svgRef.current, theme, resolvedTheme, deviceType]);
 
   return { isInitMap };
 };
