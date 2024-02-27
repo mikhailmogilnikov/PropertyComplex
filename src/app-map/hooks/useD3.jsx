@@ -5,9 +5,9 @@ import { useEffect, useState } from "react";
 import * as d3 from "d3";
 
 const initConfig = {
-  scale: 0.75,
-  translateX: 350,
-  translateY: 150,
+  scale: 0.55,
+  translateX: 100,
+  translateY: 100,
 };
 
 const themeColors = {
@@ -76,7 +76,7 @@ class MapClass {
       .attr("text-anchor", "middle")
       .attr("font-size", 20)
       .attr("font-weight", "600")
-      .attr("font-family", "__Inter_0245cf")
+      .attr("font-family", "__Inter_a943a7")
       .attr("cursor", "pointer");
   }
 
@@ -143,15 +143,18 @@ const useD3 = ({ svgRef, theme, resolvedTheme, databaseStore }) => {
     const currentTheme = resolvedTheme === "dark" ? "dark" : "light";
     const roomNames = databaseStore.getRooms().map((i) => i.name);
     const map = new MapClass({ svgRef, currentTheme, roomNames });
-    map.initSize();
-    map.initZoom();
+
+    if (!isInitMap) {
+      map.initSize();
+      map.initZoom();
+      setIsInitMap(true);
+    }
     map.initFont();
     map.initDefaultColor();
     map.initRoomStyles();
     map.initEvents(roomClickEvent);
 
-    if (!isInitMap) setIsInitMap(true);
-  }, [svgRef.current, theme]);
+  }, [svgRef.current, theme, resolvedTheme]);
 
   return { isInitMap };
 };

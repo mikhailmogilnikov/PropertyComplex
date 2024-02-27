@@ -1,8 +1,8 @@
-const SvgComponent = ({svgRef, className}) => (
+const SvgComponent = ({svgRef, className, width, height}) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={731}
-      height={228}
+      width={width}
+      height={height}
       fill="none"
       className={className}
       ref={svgRef}
