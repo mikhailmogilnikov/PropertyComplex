@@ -1,29 +1,17 @@
-# Next 14 (App Router) + i18next Boilerplate
+# Property Complex
 
-### Key features:
+Service for monitoring and accounting of enterprise property.\
+Rebuilt version with updated project architecture.
 
-- Bun
-- Next.js 14 (App Router)
-- i18next (SSR + CSR) with plural forms support
-- NextUI
-- Next Themes
-- ESLint (Airbnb codestyle)
-- Tailwind CSS
+[View website](https://property-complex.vercel.app)
+
+### Technologies:
 - JavaScript
-- Integrated CI
-
-### Quick start:
-
-```shell
-git clone https://github.com/mikhailmogilnikov/i18next-next.js-template.git my-project-name
-cd my-project-name
-bun i
-```
-
-Then, you can run locally in development mode with live reload:
-
-```shell
-bun run dev
-```
-
-Open http://localhost:3000 with your browser to see the project.
+- Next.js 14 (App Router)
+- D3 (Interactive SVG)
+- MobX
+- Tailwind CSS
+- Next UI
+- Next Themes
+- Framer Motion (Animations)
+- ESLint (Airbnb codestyle)
