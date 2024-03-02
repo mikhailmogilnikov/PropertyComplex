@@ -3,7 +3,7 @@
 Service for monitoring and accounting of enterprise property.\
 Rebuilt version with updated project architecture.
 
-[View website](https://property-complex.vercel.app)
+[View website](https://mgripropertycomplex.vercel.app)
 
 ### Technologies:
 - JavaScript
